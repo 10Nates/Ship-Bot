@@ -1,0 +1,15 @@
+{
+  "name": "ShipBot",
+  "version": "1.0.0",
+  "description": "Description",
+  "main": "index.js",
+  "scripts": {
+    "CREDIT": "ALL Bot Code (exceptions made by those who edit) made by @10Nates / github.com/10Nates."
+  },
+  "author": "Nate B - Exceptions by: ",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "edit-json-file": "^1.1.0"
+  }
+}
