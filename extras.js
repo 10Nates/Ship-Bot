@@ -5,8 +5,8 @@ const eJF = require("edit-json-file");
 module.exports = {
 
     logmsg: function logmsg(msg, message, bot) {
-        bot.channels.get('[id for log chan.]').send(`recieved: ${message.author.username} - ${message.content}`);
-        bot.channels.get('[id for log chan.]').send(`Sent: ${msg}`);
+        bot.channels.get('473299873408614420').send(`recieved: ${message.author.username} - ${message.content}`);
+        bot.channels.get('473299873408614420').send(`Sent: ${msg}`);
         console.log(message.author.username + ' - ' + message.content);
         console.log(`sent: ${msg}`);
     },
