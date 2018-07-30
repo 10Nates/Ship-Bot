@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const cmd = require('./extras');
+const extras = require('./extras');
 //halfstr taken from the  n e t
 function halfstr(str) {
     var middle = Math.ceil(str.length / 2);
@@ -24,23 +24,28 @@ bot.on('message', (message) => {
             if (message.mentions.members.array().length == 1) {
                 if (message.isMentioned(message.author.id)) {
                     message.channel.send("You can't date yourself!")
-                    cmd.logmsg("You can't date yourself!")
+                    extras.logmsg("You can't date yourself!")
                 } else {
+                    if (extras.reladet(args[0].replace(/<@|>/g, '')) == false) {
                     var namecombine = halfstr(message.author.username)[0] + halfstr(bot.users.get(args[0].replace(/<@|>/g, '')).username)[1]
                     message.channel.send(`<@${message.author.id}> and ${args[0]} are now dating! Welcome, ${namecombine}!`)
-                    cmd.logmsg(`<@${message.author.id}> and ${args[0]} are now dating! Welcome, ${namecombine}!`, message, bot)
+                    extras.logmsg(`<@${message.author.id}> and ${args[0]} are now dating! Welcome, ${namecombine}!`, message, bot)
                     var fileadd = `${jfile.get('shiplist')}${message.author.id} ${args[0].replace(/<@|>/g, '')} `
                     var fileadd2 = `${jfile.get('inship')}${message.author.id}+${args[0].replace(/<@|>/g, '')} `
                     jfile.set('shiplist', fileadd)
                     jfile.set('inship', fileadd2)
                     jfile.save()
                     shiplist = jfile.get('shiplist')
+                    } else {
+                        message.channel.send(`${args[0]} is already in a relationship!`)
+                        extras.logmsg(`${args[0]} is already in a relationship!`, message, bot)
+                    }
                 }
             } else {
-                var selectid = cmd.shipGen(message)
+                var selectid = extras.shipGen(message)
                 var namecombine = halfstr(message.author.username)[0] + halfstr(bot.users.get(selectid).username)[1]
                     message.channel.send(`<@${message.author.id}> and <@${selectid}> are now dating! Welcome, ${namecombine}!`)
-                cmd.logmsg(`<@${message.author.id}> and <@${selectid}> are now dating! Welcome, ${namecombine}!`, message, bot)
+                extras.logmsg(`<@${message.author.id}> and <@${selectid}> are now dating! Welcome, ${namecombine}!`, message, bot)
                 var fileadd = `${jfile.get('shiplist')}${message.author.id} ${selectid} `
                 var fileadd2 = jfile.get('inship') + message.author.id + '+' + selectid + ' '
                 jfile.set('shiplist', fileadd)
@@ -58,7 +63,7 @@ bot.on('message', (message) => {
             inshipid = jfile.get('inship').split(' ')[inshipfind].replace(message.author.id, '').replace('+', '')
             console.log(inshipid)
             message.channel.send(`You're already in a relationship with <@${inshipid}>!`)
-            cmd.logmsg(`You're already in a relationship with <@${inshipid}>!`, message, bot)
+            extras.logmsg(`You're already in a relationship with <@${inshipid}>!`, message, bot)
         }
     }
 
@@ -83,14 +88,14 @@ bot.on('message', (message) => {
             jfile.set('shiplist', shiplistreplace)
             jfile.save()
             message.channel.send(`<@${message.author.id}> and <@${inshipid}> have broken up!`)
-            cmd.logmsg(`<@${message.author.id}> and <@${inshipid}> have broken up!`, message, bot)
+            extras.logmsg(`<@${message.author.id}> and <@${inshipid}> have broken up!`, message, bot)
         } else {
             message.channel.send("You're not in a relationship yet!")
-            cmd.logmsg("You're not in a relationship yet!", message, bot)
+            extras.logmsg("You're not in a relationship yet!", message, bot)
         }
 
     }
 
 });
 
-bot.login('E lol');
+bot.login('OOF 3001');

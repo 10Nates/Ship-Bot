@@ -5,8 +5,8 @@ const eJF = require("edit-json-file");
 module.exports = {
 
     logmsg: function logmsg(msg, message, bot) {
-        bot.channels.get('channel ID for log chat').send(`recieved: ${message.author.username} - ${message.content}`);
-        bot.channels.get('channel ID for log chat').send(`Sent: ${msg}`);
+        bot.channels.get('[id for log chan.]').send(`recieved: ${message.author.username} - ${message.content}`);
+        bot.channels.get('[id for log chan.]').send(`Sent: ${msg}`);
         console.log(message.author.username + ' - ' + message.content);
         console.log(`sent: ${msg}`);
     },
@@ -38,6 +38,25 @@ module.exports = {
         }
         console.log('ID Picked: ' + selectid)
         return (selectid)
+    },
+
+    reladet: function reladet(selectid) {
+        var shiplist = new eJF('./shiplist.json').get('shiplist').split(' ')
+        console.log('Shiplist: ' + shiplist)
+        for (i = 0; i < shiplist.length; i++) {
+            console.log('Current: ' + shiplist[i])
+            if (selectid == shiplist[i]) {
+                console.log(`ID ${selectid} found in shiplist #${i}.`)
+                return true
+            } else if (selectid == null) {
+                console.log('ID given is undefined.')
+                return true
+            } else {
+                console.log(`ID ${selectid} doesn't match ${shiplist[i]}`)
+            }
+        }
+        return false
+
     }
 
 }
