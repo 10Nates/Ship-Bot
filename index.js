@@ -98,4 +98,4 @@ bot.on('message', (message) => {
 
 });
 
-bot.login('OOF 3001');
+bot.login(process.env.Token);
